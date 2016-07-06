@@ -7,19 +7,20 @@
 	    <field name="type">form</field>
 	    <field name="arch" type="xml">
 	        <form string="Button record">
-		    <!--The header tag is built to add buttons within. This puts them at the top -->
-		    <header>
-			<!--The oe_highlight class gives the button a red color when it is saved.
-			It is usually used to indicate the expected behaviour. -->
-				<button string="Generate name" type="object" name="generate_record_name" class="oe_highlight"/>
-				<button string="Generate password" type="object" name="generate_record_password"/>
-				<button string="Clear data" type="object" name="clear_record_data"/>
-		    </header>
-		    <group>
-			<field name="name"/>
-			<field name="password"/>
-		    </group>
-		</form>
+                <!--The header tag is built to add buttons within. This puts them at the top -->
+                <header>
+                    <!--The oe_highlight class gives the button a red color when it is saved.
+                    			It is usually used to indicate the expected behaviour. -->
+                    <h1>Spaming. Self comment</h1>
+                    <button string="Generate name" type="object" name="generate_record_name" class="oe_highlight"/>
+                    <button string="Generate password" type="object" name="generate_record_password"/>
+                    <button string="Clear data" type="object" name="clear_record_data"/>
+                </header>
+                <group>
+                    <field name="name"/>
+                    <field name="password"/>
+                </group>
+            </form>
 	    </field>
 	</record>
 
@@ -32,19 +33,18 @@
             <field name='view_id' ref='view_buttons_form'/>
         </record>
 
-	<!--The next action -->
-        <record model="ir.actions.act_window" id="buttons_example2_action">
+		<record model="ir.actions.act_window" id="buttons_example_action_two">
             <field name="name">Create new project</field>
-            <field name="res_model">project.project</field>
+            <field name="res_model">button.demo</field>
             <field name="view_type">form</field>
             <field name="view_mode">form,tree</field>
-            <field name='view_id' ref='view_project_kanban'/>
+            <field name='view_id' ref='view_buttons_form'/>
         </record>
 
         <!-- top level menu: no parent -->
         <menuitem id="main_button_menu" name="Buttons demo"/>
         <menuitem id="button_menu" name="Buttons demo" parent="main_button_menu"/>
         <menuitem id="menu_detail_logging" action="buttons_example_action" parent="button_menu" sequence="20"/>
-        <menuitem id="menu_detail_logging" action="buttons_example2_action" parent="button_menu" sequence="20"/>
+        <menuitem id="menu_detail_logging_two" action="buttons_example_action_two" parent="button_menu" sequence="30"/>
     </data>
 </openerp>
