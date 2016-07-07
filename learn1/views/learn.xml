@@ -1,0 +1,232 @@
+<openerp>
+    <data>
+    <!-- Views define the way the records of a model are displayed. -->
+        <record model="ir.ui.view" id="view_buttons_form">
+            <field name="name">learn1.form</field>
+            <field name="model">learn1.learn1</field>
+            <field name="arch" type="xml">
+
+                <!-- view content: <form>, <tree>, <graph>, ... -->
+
+                 <!--Forms are used to create and edit single records.-->
+                <form string="Learn form">
+                    <header>
+                        <separator/>
+                        <h1>Spaming before</h1>
+                       <button string="Generate name" type="object" name="generate_record_name" class="oe_highlight"/>
+                        <button string="Generate description" type="object" name="generate_record_description"/>
+                        <button string="Clear data" type="object" name="clear_record_data"/>
+                        <separator/>
+                    </header>
+
+                    <sheet>
+                        <group colspan="4">
+                            <group colspan="2" col="2">
+                                <separator string="Only two fields available" colspan="2"/>
+                                <field name="name"/>
+                                <field name="responsible_id"/>
+                            </group>
+
+                            <separator/>
+                            <separator/>
+                            <separator/>
+
+                            <group colspan="2" col="2">
+                                <separator string="Notebook pages" colspan="2"/>
+                            </group>
+
+                            <notebook colspan="4">
+                                <page string="Description">
+                                    <field name="description"/>
+                                    <!--<field name="description" nolabel="1"/>-->
+                                    </page>
+                                <page string="About">
+                                    This is an example of notebooks.
+                                    With many rows.
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+
+                </form>
+
+            </field>
+        </record>
+
+        <!-- override the automatically generated list view for courses -->
+        <record model="ir.ui.view" id="course_tree_view">
+            <field name="name">learn1.tree</field>
+            <field name="model">learn1.learn1</field>
+            <field name="arch" type="xml">
+                <tree string="Course Tree" decoration-info="responsible_id=='draft'">
+                    <field name="name"/>
+                    <field name="responsible_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="course_search_view">
+            <field name="name">learn1.search</field>
+            <field name="model">learn1.learn1</field>
+            <field name="arch" type="xml">
+                <search string="Course Search">
+                    <field name="name"/>
+                    <field name="responsible_id"/>
+                </search>
+            </field>
+        </record>
+
+
+        <!-- The actions-->
+
+            <!-- Закупки -->
+                <record model="ir.actions.act_window" id="action_purchase">
+                    <field name="name">Закупки</field>
+                    <field name="res_model">learn1.learn1</field>
+                    <field name="view_mode">form,tree,search</field>
+                    <field name='view_id' ref='view_buttons_form'/>
+                </record>
+
+            <!-- Счета -->
+                <record model="ir.actions.act_window" id="action_accounts">
+                    <field name="name">Счета</field>
+                    <field name="res_model">learn1.learn1</field>
+                    <field name="view_mode">form,tree</field>
+                    <field name='view_id' ref='view_buttons_form'/>
+                </record>
+
+            <!-- Проблемы -->
+                <record model="ir.actions.act_window" id="action_problems">
+                    <field name="name">Проблемы</field>
+                    <field name="res_model">learn1.learn1</field>
+                    <field name="view_mode">form,tree</field>
+                    <field name='view_id' ref='view_buttons_form'/>
+                </record>
+
+            <!-- Бюджет -->
+                <record model="ir.actions.act_window" id="action_budget">
+                    <field name="name">Бюджет</field>
+                    <field name="res_model">learn1.learn1</field>
+                    <field name="view_mode">form,tree</field>
+                    <field name='view_id' ref='view_buttons_form'/>
+                </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_learn_menu" name="Learn"/>
+
+        <!-- A first level in the left side menu is needed before using action= attribute -->
+        <menuitem id="learn_left_side" parent="main_learn_menu" name="Имя подразделов"/>
+
+        <!-- the following menuitem should appear *after* its parent and *after* its action -->
+        <menuitem id="learn_menu1" name="Закупки" parent="learn_left_side" action="action_purchase"/>
+        <menuitem id="learn_menu2" name="Счета" parent="learn_left_side" action="action_accounts"/>
+        <menuitem id="learn_menu3" name="Проблемы" parent="learn_left_side" action="action_problems"/>
+        <menuitem id="learn_menu4" name="Бюджет" parent="learn_left_side" action="action_budget"/>
+
+        <!-- Full id location: action="learn1.action_..." It is not required when it is the same module -->
+
+
+
+        <!-- session form view -->
+        <record model="ir.ui.view" id="session_form_view">
+            <field name="name">session.form</field>
+            <field name="model">learn1.session</field>
+            <field name="arch" type="xml">
+                <form string="Session Form">
+                    <sheet>
+                        <group>
+                            <group string="General">
+                                <field name="course_id"/>
+                                <field name="name"/>
+                                <field name="instructor_id"/>
+                                <field name="active"/>
+                            </group>
+                            <group string="Schedule">
+                                <field name="start_date"/>
+                                <field name="duration"/>
+                                <field name="seats"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- session tree/list view -->
+        <record model="ir.ui.view" id="session_tree_view">
+            <field name="name">session.tree</field>
+            <field name="model">learn1.session</field>
+            <field name="arch" type="xml">
+                <tree string="Session Tree">
+                    <field name="name"/>
+                    <field name="course_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record model="ir.ui.view" id="view_openacad_session_kanban">
+            <field name="name">learn1.session.kanban</field>
+            <field name="model">learn1.session</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="course_id">
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                             oe_kanban_global_click_edit oe_semantic_html_override
+                                             oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                                <div class="oe_dropdown_kanban">
+                                    <!-- dropdown menu -->
+                                    <div class="oe_dropdown_toggle">
+                                        <i class="fa fa-bars fa-lg"/>
+                                        <ul class="oe_dropdown_menu">
+                                            <li>
+                                                <a type="delete">Delete</a>
+                                            </li>
+                                            <li>
+                                                <ul class="oe_kanban_colorpicker"
+                                                    data-field="color"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="oe_clear"></div>
+                                </div>
+                                <div t-attf-class="oe_kanban_content">
+                                    <!-- title -->
+                                    Session name:
+                                    <field name="name"/>
+                                    <br/>
+                                    Start date:
+                                    <field name="start_date"/>
+                                    <br/>
+                                    duration:
+                                    <field name="duration"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+
+
+
+
+
+        <record model="ir.actions.act_window" id="session_list_action">
+            <field name="name">Sessions</field>
+            <field name="res_model">learn1.session</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <menuitem id="session_menu" name="Sessions" parent="main_learn_menu" action="session_list_action"/>
+
+
+
+    </data>
+</openerp>
