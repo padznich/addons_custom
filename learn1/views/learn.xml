@@ -164,8 +164,6 @@
             </field>
         </record>
 
-
-
         <record model="ir.ui.view" id="view_openacad_session_kanban">
             <field name="name">learn1.session.kanban</field>
             <field name="model">learn1.session</field>
@@ -210,12 +208,6 @@
                 </kanban>
             </field>
         </record>
-
-
-
-
-
-
 
         <record model="ir.actions.act_window" id="session_list_action">
             <field name="name">Sessions</field>
