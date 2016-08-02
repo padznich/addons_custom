@@ -15,6 +15,15 @@ class Document(models.Model):
     opportunity = fields.Many2one('crm.lead', string="Opportunity")
     create_date = fields.Datetime(required=True)
 
+    type = fields.Selection([
+        ('out_invoice', 'Customer Invoice'),
+        ('in_invoice', 'Vendor Bill'),
+        ('out_refund', 'Customer Refund'),
+        ('in_refund', 'Vendor Refund'),
+    ], readonly=True, index=True, change_default=True,
+        default=lambda self: self._context.get('type', 'out_invoice'),
+        track_visibility='always')
+
     # sequence = fields.Integer(default=10, help="Gives the sequence of this line when displaying the invoice.")
     product_id = fields.Many2one('product.product', string='Product', ondelete='restrict', index=True)
     quantity = fields.Float(string='Quantity', digits=dp.get_precision('Product Unit of Measure'),
