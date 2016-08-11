@@ -1,0 +1,32 @@
+<openerp>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="user_task_tree">
+      <field name="name">user_tasks_tree</field>
+      <field name="model">project.task</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="user_task.action_window">
+      <field name="name">All Tasks</field>
+      <field name="res_model">project.task</field>
+      <field name="view_mode">tree,form,calendar</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Tasks" id="user_task.menu_root" action="user_task.action_window"/>
+
+    <!-- menu categories -->
+    <!--<menuitem name="Show all Tasks" id="user_task.menu_1" parent="user_task.menu_root"/>-->
+
+    <!-- actions -->
+    <!--<menuitem name="List" id="user_task.menu_1_list" parent="user_task.menu_1" action="user_task.action_window"/>-->
+
+  </data>
+</openerp>
