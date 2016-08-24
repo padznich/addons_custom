@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_addons/product_tree_addons/product_tree,addons/product_tree.addons/product_tree,model_addons/product_tree_addons/product_tree,,1,0,0,0
