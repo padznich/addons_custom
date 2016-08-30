@@ -1,0 +1,1 @@
+python /usr/bin/odoo.py scaffold project_phases /home/pad/code/addons_custom
