@@ -1,0 +1,57 @@
+<openerp>
+  <data>
+      <record model="ir.ui.view" id="view_catalog_phases_form">
+          <field name="name">catalog.phases.form</field>
+          <field name="model">catalog.phases</field>
+          <field name="arch" type="xml">
+              <form string="Phase">
+                  <sheet>
+                      <group>
+                          <field name="name"/>
+                          <field name="description"/>
+                      </group>
+                      <group>
+                          <field name="color"/>
+                          <field name="priority"/>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+
+      <record model="ir.ui.view" id="catalog_phases_tree">
+          <field name="name">catalog.phases.tree</field>
+          <field name="model">catalog.phases</field>
+          <field name="arch" type="xml">
+              <tree string="Phases Catalog" decoration-info="name=='draft'">
+                  <field name="name"/>
+                  <field name="priority"/>
+                  <field name="color"/>
+                  <field name="description"/>
+              </tree>
+          </field>
+      </record>
+
+
+      <!-- The actions-->
+      <record model="ir.actions.act_window" id="action_catalog_phases">
+          <field name="name">Phases</field>
+          <field name="res_model">catalog.phases</field>
+          <field name="view_mode">form,tree</field>
+          <field name='view_id' ref='view_catalog_phases_form'/>
+      </record>
+
+
+      <!-- top level menu: no parent -->
+      <menuitem id="main_catalog_phases_menu" name="Phases Catalog"/>
+
+      <!-- A first level in the left side menu is needed before using action= attribute -->
+      <menuitem id="left_side_catalog_phases" parent="main_catalog_phases_menu" name="Phases Catalog"/>
+
+      <!-- the following menuitem should appear *after* its parent and *after* its action -->
+      <menuitem id="left_side_catalog_phases_1" name="Phases" parent="left_side_catalog_phases" action="action_catalog_phases"/>
+
+
+  </data>
+</openerp>
