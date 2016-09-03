@@ -9,8 +9,8 @@
                       <group>
                           <field name="name"/>
                           <field name="description"/>
-                      </group>
-                      <group>
+                      <!--</group>-->
+                      <!--<group>-->
                           <field name="color"/>
                           <field name="priority"/>
                       </group>
