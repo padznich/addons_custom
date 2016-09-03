@@ -4,7 +4,7 @@
           <field name="name">catalog.phases.form</field>
           <field name="model">catalog.phases</field>
           <field name="arch" type="xml">
-              <form string="Phase">
+              <form>
                   <sheet>
                       <group>
                           <field name="name"/>
@@ -24,7 +24,7 @@
           <field name="name">catalog.phases.tree</field>
           <field name="model">catalog.phases</field>
           <field name="arch" type="xml">
-              <tree string="Phases Catalog" decoration-info="name=='draft'">
+              <tree decoration-info="name=='draft'">
                   <field name="name"/>
                   <field name="priority"/>
                   <field name="color"/>
@@ -44,10 +44,10 @@
 
 
       <!-- top level menu: no parent -->
-      <menuitem id="main_catalog_phases_menu" name="Phases Catalog"/>
+      <menuitem id="main_catalog_phases_menu" name="Каталог Фаз Проектов"/>
 
       <!-- A first level in the left side menu is needed before using action= attribute -->
-      <menuitem id="left_side_catalog_phases" parent="main_catalog_phases_menu" name="Phases Catalog"/>
+      <menuitem id="left_side_catalog_phases" parent="main_catalog_phases_menu" name="Каталог Фаз Проектов"/>
 
       <!-- the following menuitem should appear *after* its parent and *after* its action -->
       <menuitem id="left_side_catalog_phases_1" name="Phases" parent="left_side_catalog_phases" action="action_catalog_phases"/>

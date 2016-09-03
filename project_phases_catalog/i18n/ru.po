@@ -43,6 +43,20 @@ msgstr "Фазы Проекта"
 #: model:ir.ui.view,arch_db:project.view_task_project_user_search
 #: model:ir.ui.view,arch_db:project.view_task_search_form
 #: model:res.request.link,name:project.req_link_project
+msgid "Phases"
+msgstr "Фазы"
+
+#. module: project_phases_catalog
+#: model:ir.model,name:project.model_project_project
+#: model:ir.model.fields,field_description:project.field_project_task_history_cumulative_project_id
+#: model:ir.model.fields,field_description:project.field_project_task_project_id
+#: model:ir.model.fields,field_description:project.field_report_project_task_user_project_id
+#: model:ir.ui.view,arch_db:project.edit_project
+#: model:ir.ui.view,arch_db:project.view_task_form2
+#: model:ir.ui.view,arch_db:project.view_task_history_search
+#: model:ir.ui.view,arch_db:project.view_task_project_user_search
+#: model:ir.ui.view,arch_db:project.view_task_search_form
+#: model:res.request.link,name:project.req_link_project
 msgid "Phase Assigning"
 msgstr "Назначить Фазы"
 
@@ -115,3 +129,17 @@ msgstr "Название Фазы"
 #: model:res.request.link,name:project.req_link_project
 msgid "Phase"
 msgstr "Фаза"
+
+#. module: project_phases_catalog
+#: model:ir.model,name:project_phases_catalog.catalog.phases
+#: model:ir.model.fields,field_description:project_phases_catalog.field_project_task_history_cumulative_project_id
+#: model:ir.model.fields,field_description:project.field_project_task_project_id
+#: model:ir.model.fields,field_description:project.field_report_project_task_user_project_id
+#: model:ir.ui.view,arch_db:project.edit_project
+#: model:ir.ui.view,arch_db:project.view_task_form2
+#: model:ir.ui.view,arch_db:project.view_task_history_search
+#: model:ir.ui.view,arch_db:project.view_task_project_user_search
+#: model:ir.ui.view,arch_db:project.view_task_search_form
+#: model:res.request.link,name:project.req_link_project
+msgid "Phases Catalog"
+msgstr "Каталог Фаз Проектов"
