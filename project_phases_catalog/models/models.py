@@ -15,3 +15,12 @@ class CatalogPhases(models.Model):
                                 default=('1', '1'),
                                 string=_('Priority'))
     description = fields.Char(string=_('Description'))
+
+
+class CatalogPhasesRel(models.Model):
+
+    _name = 'catalog.phase'
+
+    phase_id = fields.Many2one('catalog.phases', string=_('Phase'))
+    date_contract = fields.Date(string=_('Contract Date'))
+    revenue = fields.Float(string=_('Revenue'))

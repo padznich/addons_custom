@@ -9,14 +9,56 @@
             <field name="arch" type="xml">
                 <xpath expr='//notebook' position="inside">
                     <page string="Project Phases">
+                        <h1>Phase Assigning</h1>
                         <group>
-                            <h1>Phase Assigning</h1>
-                            <field name="phase_id"/>
+                            <field name="phase_ids"/>
+                            <!--widget="many2many_checkboxes"/>-->
                         </group>
                     </page>
+                    <!--<page string="Project Phases 2">-->
+                        <!--<group>-->
+                            <!--<h1>Phase Assigning</h1>-->
+                            <!--<field name="phase_ids"/>-->
+                            <!--widget="many2many_tags" options="{'no_create': True}"/>-->
+                        <!--</group>-->
+                    <!--</page>-->
+
+                    <!--<page string="Project Phases 4">-->
+                        <!--<group>-->
+                            <!--<h1>Phase Assigning</h1>-->
+                            <!--<field name="phase_id" widget="many2many_kanban">-->
+                                <!--<kanban>-->
+                                    <!--<field name="name"/>-->
+                                    <!--<templates>-->
+                                        <!--<t t-name="kanban-box">-->
+                                            <!--<field name="name"/>-->
+                                        <!--</t>-->
+                                    <!--</templates>-->
+                                <!--</kanban>-->
+                            <!--</field>-->
+                        <!--</group>-->
+                    <!--</page>-->
                 </xpath>
             </field>
         </record>
+
+    <record model="ir.ui.view" id="phases_tree">
+        <field name="name">proj.phases.tree</field>
+        <field name="model">project.project</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="name=='draft'">
+                <field name="phase_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="phases_action1">
+        <field name="name">Phases</field>
+        <field name="res_model">project.project</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem id="configuration_menu" name="Phases" parent="base.menu_main_pm" action="phases_action1"/>
+
 
     </data>
 </openerp>
