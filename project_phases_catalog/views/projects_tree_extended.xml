@@ -5,8 +5,9 @@
     <record model="ir.ui.view" id="project_phases_tree">
         <field name="name">project.project.tree.phases</field>
             <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project"/>
             <field name="arch" type="xml">
-            <xpath expr="//tree" position="inside">
+            <xpath expr="//tree/field[@name='partner_id']" position="after">
                 <field name="phase_ids"/>
             </xpath>
         </field>
