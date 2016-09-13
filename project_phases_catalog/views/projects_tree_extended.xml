@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <record model="ir.ui.view" id="project_phases_tree">
+        <field name="name">project.project.tree.phases</field>
+            <field name="model">project.project</field>
+            <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="phase_ids"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--record model="ir.actions.act_window" id="project_phases_action1">
+        <field name="name">Phases</field>
+        <field name="res_model">project.project</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="configuration_menu" name="Phases" parent="base.menu_main_pm" action="project_phases_action1"/-->
+
+    </data>
+</openerp>

@@ -23,6 +23,7 @@
         # 'security/ir.model.access.csv',
         'views/catalog_views.xml',
         'views/project_notebook.xml',
+        'views/projects_tree_extended.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
