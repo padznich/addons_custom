@@ -48,9 +48,18 @@
         <field name="arch" type="xml">
             <tree decoration-info="name=='draft'">
                 <field name="phase_ids"/>
+                <!--<field name="revenue"/>-->
             </tree>
         </field>
     </record>
+
+    <record model="ir.actions.act_window" id="phases_action1">
+        <field name="name">Phases</field>
+        <field name="res_model">project.project</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem id="configuration_menu" name="Phases" parent="base.menu_main_pm" action="phases_action1"/>
+
 
     </data>
 </openerp>

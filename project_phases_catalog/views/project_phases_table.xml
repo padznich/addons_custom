@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <record model="ir.ui.view" id="project_phases_table">
+        <field name="name">project.project.table.phases</field>
+        <field name="model">project.project</field>
+        <!--<field name="inherit_id" ref="project.view_project"/>-->
+        <field name="arch" type="xml">
+            <form>
+                <p t-foreach="phase_ids" t-as="i">
+                    <t t-esc="i"/>
+                </p>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="project_phases_action1">
+        <field name="name">Phases Table</field>
+        <field name="res_model">project.project</field>
+        <field name="view_mode">form</field>
+    </record>
+    <menuitem id="configuration_menu" name="Phases Table" parent="base.menu_main_pm" action="project_phases_action1"/>
+
+    </data>
+</openerp>

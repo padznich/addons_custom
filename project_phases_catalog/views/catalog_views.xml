@@ -7,8 +7,8 @@
           <field name="arch" type="xml">
               <tree decoration-info="name=='draft'">
                   <field name="name"/>
-                  <field name="priority"/>
-                  <field name="color"/>
+                  <field name="priority" invisible="1"/>
+                  <field name="color" invisible="1"/>
                   <field name="description"/>
               </tree>
           </field>
@@ -23,8 +23,8 @@
                       <group>
                           <field name="name" placeholder="Name"/>
                           <field name="description"/>
-                          <field name="color"/>
-                          <field name="priority"/>
+                          <field name="color" invisible="1"/>
+                          <field name="priority" invisible="1"/>
                       </group>
                   </sheet>
               </form>
@@ -36,6 +36,7 @@
           <field name="model">catalog.phase</field>
           <field name="arch" type="xml">
               <tree>
+                  <field name="project_id"/>
                   <field name="phase_id"/>
                   <field name="date_contract"/>
                   <field name="revenue"/>
@@ -50,6 +51,7 @@
               <form>
                   <sheet>
                       <group>
+                          <field name="project_id"/>
                           <field name="phase_id"/>
                           <field name="date_contract"/>
                           <field name="revenue"/>
@@ -68,6 +70,16 @@
           <field name='view_id' ref='view_catalog_phases_form'/>
       </record>
 
+      <record model="ir.actions.act_window" id="action_catalog_phases_table">
+          <field name="name">Phases Table</field>
+          <field name="res_model">catalog.phase</field>
+          <field name="arch" type="xml">
+                  <p t-foreach="phase_id" t-as="i">
+                    <t t-esc="i"/>
+                </p>
+          </field>
+      </record>
+
 
       <!-- top level menu: no parent -->
       <menuitem id="main_catalog_phases_menu" name="Каталог Фаз Проектов"/>
@@ -77,6 +89,7 @@
 
       <!-- the following menuitem should appear *after* its parent and *after* its action -->
       <menuitem id="left_side_catalog_phases_1" name="Phases" parent="left_side_catalog_phases" action="action_catalog_phases"/>
+      <menuitem id="left_side_catalog_phases_2" name="Phases Table" parent="left_side_catalog_phases" action="action_catalog_phases_table"/>
 
 
   </data>
