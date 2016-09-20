@@ -4,7 +4,7 @@
       <record model="ir.ui.view" id="view_catalog_phases_tree">
           <field name="name">catalog.phases.tree</field>
           <field name="model">catalog.phases</field>
-          <field name="arch" type="xml">
+          <field name="arch " type="xml">
               <tree decoration-info="name=='draft'">
                   <field name="name"/>
                   <field name="priority" invisible="1"/>

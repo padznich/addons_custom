@@ -17,11 +17,12 @@ class CatalogPhases(models.Model):
     description = fields.Char(string=_('Description'))
 
 
-class CatalogPhasesRel(models.Model):
+class ProjectPhasesRel(models.Model):
 
     _name = 'catalog.phase'
 
-    project_id = fields.Many2one('project.project', string=_('Project'), )
+    task_id = fields.Many2one('project.task', string=_('Task'))
+    project_id = fields.Many2one('project.project', string=_('Project'))
     phase_id = fields.Many2one('catalog.phases', string=_('Phase'))
     date_contract = fields.Date(string=_('Contract Date'))
     revenue = fields.Float(string=_('Revenue'))

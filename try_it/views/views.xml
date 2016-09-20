@@ -1,0 +1,128 @@
+<openerp>
+  <data>
+     <!--explicit list view definition -->
+    <record model="ir.ui.view" id="try_it.list">
+      <field name="name">try_it_list</field>
+      <field name="model">try_it.try_it</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+          <field name="sub_revenue"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="try_it.form">
+      <field name="name">try_it_form</field>
+      <field name="model">try_it.try_it</field>
+      <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="value"/>
+                </group>
+                <group>
+                    <field name="value2"/>
+                    <field name="sub_revenue"/>
+                </group>
+            </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="try_it.sub_list">
+      <field name="name">try_it_sub_list</field>
+      <field name="model">try_it.sub</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="date_from"/>
+          <field name="date_to"/>
+          <field name="revenue"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="try_it.sub_form">
+      <field name="name">try_it_sub_form</field>
+      <field name="model">try_it.sub</field>
+      <field name="arch" type="xml">
+        <form>
+          <field name="name"/>
+          <field name="date_from"/>
+          <field name="date_to"/>
+          <field name="revenue"/>
+        </form>
+      </field>
+    </record>
+
+    <!-- The actions-->
+      <record model="ir.actions.act_window" id="action_try_it_list">
+          <field name="name">Try it</field>
+          <field name="res_model">try_it.try_it</field>
+          <field name="view_mode">form,tree</field>
+          <field name='view_id' ref='try_it.list'/>
+      </record>
+
+      <record model="ir.actions.act_window" id="action_try_it_sub_list">
+          <field name="name">Try it sub</field>
+          <field name="res_model">try_it.sub</field>
+          <field name="view_mode">form,tree</field>
+          <field name='view_id' ref='try_it.sub_list'/>
+      </record>
+
+    <!-- top level menu: no parent -->
+    <menuitem id="main_try_it_menu" name="Try It"/>
+
+    <!-- A first level in the left side menu is needed before using action= attribute -->
+    <menuitem id="left_side_try_it" parent="main_try_it_menu" name="Try It"/>
+
+    <!-- the following menuitem should appear *after* its parent and *after* its action -->
+    <menuitem id="left_side_try_it_1" name="Try It" parent="left_side_try_it" action="action_try_it_list"/>
+    <menuitem id="left_side_try_it_2" name="Try It Sub" parent="left_side_try_it" action="action_try_it_sub_list"/>
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="try_it.action_window">
+      <field name="name">try_it window</field>
+      <field name="res_model">try_it.try_it</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="try_it.action_server">
+      <field name="name">try_it server</field>
+      <field name="model_id" ref="model_try_it_try_it"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="try_it" id="try_it.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="try_it.menu_1" parent="try_it.menu_root"/>
+    <menuitem name="Menu 2" id="try_it.menu_2" parent="try_it.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="try_it.menu_1_list" parent="try_it.menu_1"
+              action="try_it.action_window"/>
+    <menuitem name="Server to list" id="try_it" parent="try_it.menu_2"
+              action="try_it.action_server"/>
+    -->
+  </data>
+</openerp>

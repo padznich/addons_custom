@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <record model="ir.ui.view" id="project_task_phase">
+        <field name="name">project.task.phase</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+            <!--<xpath expr="//form/sheet/group/group/field[@name='user_id']" position="after">-->
+                <!--<field name="phase_id"/>-->
+                <h1>Hello</h1>
+            </xpath>
+                <h1>Bye</h1>
+        </field>
+    </record>
+
+    </data>
+</openerp>

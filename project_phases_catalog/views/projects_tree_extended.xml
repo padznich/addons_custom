@@ -13,6 +13,16 @@
         </field>
     </record>
 
+    <!--record id="view_project_phases_pivot" model="ir.ui.view">
+        <field name="name">project.phases.pivot</field>
+        <field name="model">project.project</field>
+        <field name="arch" type="xml">
+            <xpath expr="//pivot/field[@name='partner_id']" position="after">
+                <field name="phase_ids"/>
+            </xpath>
+        </field>
+    </record-->
+
     <!--record model="ir.actions.act_window" id="project_phases_action1">
         <field name="name">Phases</field>
         <field name="res_model">project.project</field>
