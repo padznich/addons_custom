@@ -8,7 +8,8 @@
         <tree>
           <field name="name"/>
           <field name="value"/>
-          <field name="value2"/>
+          <field name="tax"/>
+          <field name="total"/>
           <field name="sub_revenue"/>
         </tree>
       </field>
@@ -23,9 +24,10 @@
                 <group>
                     <field name="name"/>
                     <field name="value"/>
+                    <field name="tax"/>
                 </group>
                 <group>
-                    <field name="value2"/>
+                    <field name="total"/>
                     <field name="sub_revenue"/>
                 </group>
             </sheet>

@@ -4,8 +4,8 @@
       <record model="ir.ui.view" id="view_catalog_phases_tree">
           <field name="name">catalog.phases.tree</field>
           <field name="model">catalog.phases</field>
-          <field name="arch " type="xml">
-              <tree decoration-info="name=='draft'">
+          <field name="arch" type="xml">
+              <tree editable="True">
                   <field name="name"/>
                   <field name="priority" invisible="1"/>
                   <field name="color" invisible="1"/>
@@ -31,11 +31,27 @@
           </field>
       </record>
 
+      <record model="ir.ui.view" id="view_catalog_phases_pivot">
+          <field name="name">catalog.phases.pivot</field>
+          <field name="model">catalog.phases</field>
+          <field name="arch" type="xml">
+              <pivot>
+                  <field name="name" placeholder="Name"/>
+                  <field name="description"/>
+                  <field name="color" invisible="1"/>
+                  <field name="priority" invisible="1"/>
+              </pivot>
+          </field>
+      </record>
+
+      <!--#-->
+      <!--catalog.phase model-->
+      <!--#-->
       <record model="ir.ui.view" id="view_phase_tree">
           <field name="name">phase.tree</field>
           <field name="model">catalog.phase</field>
           <field name="arch" type="xml">
-              <tree>
+              <tree editable="True">
                   <field name="project_id"/>
                   <field name="phase_id"/>
                   <field name="date_contract"/>
@@ -61,23 +77,48 @@
           </field>
       </record>
 
+      <record model="ir.ui.view" id="view_phase_pivot">
+          <field name="name">phase.pivot</field>
+          <field name="model">catalog.phase</field>
+          <field name="arch" type="xml">
+              <pivot display_quantity="true">
+                  <field name="project_id"/>
+                  <field name="phase_id"/>
+                  <field name="date_contract" />
+                  <field name="revenue"/>
+              </pivot>
+          </field>
+      </record>
+
+
+
+      <record model="ir.ui.view" id="view_phase_graph">
+          <field name="name">phase.graph</field>
+          <field name="model">catalog.phase</field>
+          <field name="arch" type="xml">
+              <graph type="pivot">
+                  <field name="project_id" type="row"/>
+                  <field name="phase_id" type="row"/>
+                  <field name="date_contract" type="row"/>
+                  <field name="revenue" type="measure"/>
+              </graph>
+          </field>
+      </record>
+
 
       <!-- The actions-->
       <record model="ir.actions.act_window" id="action_catalog_phases">
           <field name="name">Phases</field>
           <field name="res_model">catalog.phases</field>
           <field name="view_mode">form,tree</field>
-          <field name='view_id' ref='view_catalog_phases_form'/>
+          <field name='view_id' ref='view_catalog_phases_tree'/>
       </record>
 
       <record model="ir.actions.act_window" id="action_catalog_phases_table">
           <field name="name">Phases Table</field>
           <field name="res_model">catalog.phase</field>
-          <field name="arch" type="xml">
-                  <p t-foreach="phase_id" t-as="i">
-                    <t t-esc="i"/>
-                </p>
-          </field>
+          <field name="view_mode">form,tree,pivot,graph</field>
+          <field name='view_id' ref='view_phase_tree'/>
       </record>
 
 

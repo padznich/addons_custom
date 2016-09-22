@@ -7,12 +7,9 @@
             <field name="model">project.task</field>
             <field name="inherit_id" ref="project.view_task_form2"/>
             <field name="arch" type="xml">
-            <xpath expr="//form" position="inside">
-            <!--<xpath expr="//form/sheet/group/group/field[@name='user_id']" position="after">-->
-                <!--<field name="phase_id"/>-->
-                <h1>Hello</h1>
+            <xpath expr="//form/sheet/group/group/field[@name='user_id']" position="after">
+                <field name="phase_id"/>
             </xpath>
-                <h1>Bye</h1>
         </field>
     </record>
 

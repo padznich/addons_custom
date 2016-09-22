@@ -12,11 +12,11 @@
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/openerp/addons/base/module/module_data.xml
     # for the full list
-    'category': 'Uncategorized',
+    'category': 'Project Phases',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'project'],
+    'depends': ['base', 'project', 'mail'],
 
     # always loaded
     'data': [
@@ -24,6 +24,7 @@
         'views/catalog_views.xml',
         'views/project_notebook.xml',
         'views/projects_tree_extended.xml',
+        'views/task_extend.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
