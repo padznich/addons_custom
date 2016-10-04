@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Phase -->
+        <record id="edit_project_phase_tree" model="ir.ui.view">
+            <field name="name">project.phase.tree</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Project Phases">
+                        <field name="phase_line">
+                            <tree string="Phases Lines" editable="bottom">
+                                <field name="phase_id"/>
+                                <field name="revenue"/>
+                                <field name="date_contract"/>
+                                <field name="date_accomplish"/>
+                            </tree>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_total_cost" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="phase_view_form" model="ir.ui.view">
+            <field name="name">project.phase.form</field>
+            <field name="model">project.phases</field>
+            <field name="arch" type="xml">
+                <form string="Phases Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="phase_id"/>
+                                <field name="project_phase_line_id"/>
+                            </group>
+                            <group>
+                                <field name="revenue"/>
+                            </group>
+                            <group>
+                                <field name="date_contract"/>
+                                <field name="date_accomplish"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="phase_view_tree" model="ir.ui.view">
+            <field name="name">project.phase.tree</field>
+            <field name="model">project.phases</field>
+            <field name="arch" type="xml">
+                <tree string="Phases List" editable="True">
+                    <field name="project_phase_line_id"/>
+                    <field name="phase_id"/>
+                    <field name="revenue"/>
+                    <field name="date_contract"/>
+                    <field name="date_accomplish"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="phase_view_pivot" model="ir.ui.view">
+            <field name="name">project.phase.pivot</field>
+            <field name="model">project.phases</field>
+            <field name="arch" type="xml">
+                <pivot display_quantity="true" string="Project Phases Table">
+                    <field name="project_phase_line_id"/>
+                    <field name="phase_id"/>
+                    <field name="revenue"/>
+                    <field name="date_contract"/>
+                    <field name="date_accomplish"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="phase_view_graph" model="ir.ui.view">
+            <field name="name">project.phase.graph</field>
+            <field name="model">project.phases</field>
+            <field name="arch" type="xml">
+                <graph string="Project Phases Grapg">
+                    <field name="project_phase_line_id"/>
+                    <field name="phase_id"/>
+                    <field name="revenue"/>
+                    <field name="date_contract"/>
+                    <field name="date_accomplish"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="open_phase_tree" model="ir.actions.act_window">
+            <field name="name">Projects Phases</field>
+            <field name="res_model">project.phases</field>
+            <field name="view_mode">tree,pivot,graph</field>
+            <field name="view_id" ref="phase_view_tree"/>
+        </record>
+
+        <menuitem action="open_phase_tree" id="menu_phase_tree_view" parent="project.menu_project_config" sequence="9"/>
+
+
+    </data>
+</openerp>
