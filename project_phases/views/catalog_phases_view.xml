@@ -6,7 +6,7 @@
             <field name="name">project.phases.tree</field>
             <field name="model">catalog.phases</field>
             <field name="arch" type="xml">
-                <tree string="Phases List" editable="True">
+                <tree string="Список Фаз" editable="True">
                     <field name="name"/>
                     <field name="description"/>
                     <!--<field name="sequence"/>-->
@@ -18,16 +18,16 @@
             <field name="name">project.phases.form</field>
             <field name="model">catalog.phases</field>
             <field name="arch" type="xml">
-                <form string="Phases Form">
+                <form string="Форма для заполнения Фазы">
                     <field name="name"/>
                     <field name="description"/>
-                    <field name="sequence" />
+                    <!--<field name="sequence" />-->
                 </form>
             </field>
         </record>
 
         <record id="open_phases_tree" model="ir.actions.act_window">
-            <field name="name">Phases Catalog</field>
+            <field name="name">Каталог Фаз</field>
             <field name="res_model">catalog.phases</field>
             <field name="view_mode">tree</field>
             <field name="view_id" ref="phases_view_tree"/>

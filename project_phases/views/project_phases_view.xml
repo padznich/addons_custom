@@ -9,7 +9,7 @@
             <field name="inherit_id" ref="project.edit_project"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook" position="inside">
-                    <page string="Project Phases">
+                    <page string="Фазы Проекта">
                         <field name="phase_line">
                             <tree string="Phases Lines" editable="bottom">
                                 <field name="phase_id"/>
@@ -31,7 +31,7 @@
             <field name="name">project.phase.form</field>
             <field name="model">project.phases</field>
             <field name="arch" type="xml">
-                <form string="Phases Form">
+                <form string="Форма для заполнения Фазы">
                     <sheet>
                         <group>
                             <group>
@@ -55,7 +55,7 @@
             <field name="name">project.phase.tree</field>
             <field name="model">project.phases</field>
             <field name="arch" type="xml">
-                <tree string="Phases List" editable="True">
+                <tree string="Список Фаз" editable="True">
                     <field name="project_phase_line_id"/>
                     <field name="phase_id"/>
                     <field name="revenue"/>
@@ -69,7 +69,7 @@
             <field name="name">project.phase.pivot</field>
             <field name="model">project.phases</field>
             <field name="arch" type="xml">
-                <pivot display_quantity="true" string="Project Phases Table">
+                <pivot display_quantity="true" string="Таблица Проектов по Фазам">
                     <field name="project_phase_line_id"/>
                     <field name="phase_id"/>
                     <field name="revenue"/>
@@ -83,20 +83,36 @@
             <field name="name">project.phase.graph</field>
             <field name="model">project.phases</field>
             <field name="arch" type="xml">
-                <graph string="Project Phases Grapg">
+                <graph string="Графики Проектов по фазам"
+                       type="pivot">
+                    <field name="project_phase_line_id" type="row"/>
+                    <field name="phase_id" type="row"/>
+                    <field name="revenue" type="measure"/>
+                    <field name="date_contract" type="measure"/>
+                    <field name="date_accomplish" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="phase_view_calendar" model="ir.ui.view">
+            <field name="name">project.phase.calendar</field>
+            <field name="model">project.phases</field>
+            <field name="arch" type="xml">
+                <calendar date_start="date_contract" date_stop="date_accomplish"
+                          string="Календарь">
                     <field name="project_phase_line_id"/>
                     <field name="phase_id"/>
                     <field name="revenue"/>
                     <field name="date_contract"/>
                     <field name="date_accomplish"/>
-                </graph>
+                </calendar>
             </field>
         </record>
 
         <record id="open_phase_tree" model="ir.actions.act_window">
-            <field name="name">Projects Phases</field>
+            <field name="name">Проект/Фаза</field>
             <field name="res_model">project.phases</field>
-            <field name="view_mode">tree,pivot,graph</field>
+            <field name="view_mode">tree,pivot,graph,calendar</field>
             <field name="view_id" ref="phase_view_tree"/>
         </record>
 

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from openerp import models, fields, api
-from openerp.tools.translate import _
 
 
 class CatalogPhases(models.Model):
@@ -10,8 +9,8 @@ class CatalogPhases(models.Model):
     _description = 'Catalog of Project Phases'
     _rec_name = 'name'
 
-    name = fields.Char(required=True, string=_('Phase Name'))
-    description = fields.Char(string=_('Description'))
+    name = fields.Char(required=True, string='Фаза')
+    description = fields.Char(string='Описание')
     sequence = fields.Integer('Sequence')
 
 
@@ -21,24 +20,24 @@ class ProjectPhases(models.Model):
     _description = 'Project Phases'
     _rec_name = 'phase_id'
 
-    phase_id = fields.Many2one('catalog.phases', string=_('Phase'), ondelete='restrict', relation='data_section_rel')
+    phase_id = fields.Many2one('catalog.phases', string='Фаза', ondelete='restrict', relation='data_section_rel')
     project_phase_line_id = fields.Many2one('project.project', string=_('Project'), ondelete='cascade')
 
-    date_contract = fields.Date(string=_('Contract Date'),
+    date_contract = fields.Date(string='Дата по контракту',
                               help="Planing date for the Project Phase")
 
-    date_accomplish = fields.Date(string=_('Real Date'),
+    date_accomplish = fields.Date(string='Реальная Дата',
                               help="Real accomplish date for the Project Phase")
 
     currency_id = fields.Many2one('res.currency', string='Currency')
-    revenue = fields.Monetary(string=_('Revenue'), currency_field='currency_id',
+    revenue = fields.Monetary(string='Доходы', currency_field='currency_id',
                               help="Cost of the Project Phase")
 
 
 class ProjectProject(models.Model):
     _inherit = 'project.project'
 
-    phase_line = fields.One2many('project.phases', 'project_phase_line_id', string='Phases Lines', copy=True)
+    phase_line = fields.One2many('project.phases', 'project_phase_line_id', string='Строка Фазы', copy=True)
 
     @api.depends('phase_line')
     def _amount_all(self):
@@ -52,7 +51,7 @@ class ProjectProject(models.Model):
                 'amount_total_cost': project.currency_id.round(amount_total_cost),
             })
 
-    amount_total_cost = fields.Monetary(string='Total Planned Cost', store=True,
+    amount_total_cost = fields.Monetary(string='Суммарная Выручка', store=True,
                                       readonly=True, compute='_amount_all')
 
 
