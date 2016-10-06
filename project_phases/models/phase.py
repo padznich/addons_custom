@@ -21,7 +21,7 @@ class ProjectPhases(models.Model):
     _rec_name = 'phase_id'
 
     phase_id = fields.Many2one('catalog.phases', string='Фаза', ondelete='restrict', relation='data_section_rel')
-    project_phase_line_id = fields.Many2one('project.project', string=_('Project'), ondelete='cascade')
+    project_phase_line_id = fields.Many2one('project.project', string='Project', ondelete='cascade')
 
     date_contract = fields.Date(string='Дата по контракту',
                               help="Planing date for the Project Phase")
