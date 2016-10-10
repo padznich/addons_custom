@@ -57,6 +57,7 @@
             <field name="arch" type="xml">
                 <tree string="Список Фаз" editable="True">
                     <field name="project_phase_line_id"/>
+                    <field name="gip"/>
                     <field name="phase_id"/>
                     <field name="revenue"/>
                     <field name="date_contract"/>
@@ -71,6 +72,7 @@
             <field name="arch" type="xml">
                 <pivot display_quantity="true" string="Таблица Проектов по Фазам">
                     <field name="project_phase_line_id"/>
+                    <field name="gip"/>
                     <field name="phase_id"/>
                     <field name="revenue"/>
                     <field name="date_contract"/>
@@ -86,6 +88,7 @@
                 <graph string="Графики Проектов по фазам"
                        type="pivot">
                     <field name="project_phase_line_id" type="row"/>
+                    <field name="gip"/>
                     <field name="phase_id" type="row"/>
                     <field name="revenue" type="measure"/>
                     <field name="date_contract" type="measure"/>
@@ -94,25 +97,10 @@
             </field>
         </record>
 
-        <record id="phase_view_calendar" model="ir.ui.view">
-            <field name="name">project.phase.calendar</field>
-            <field name="model">project.phases</field>
-            <field name="arch" type="xml">
-                <calendar date_start="date_contract" date_stop="date_accomplish"
-                          string="Календарь">
-                    <field name="project_phase_line_id"/>
-                    <field name="phase_id"/>
-                    <field name="revenue"/>
-                    <field name="date_contract"/>
-                    <field name="date_accomplish"/>
-                </calendar>
-            </field>
-        </record>
-
         <record id="open_phase_tree" model="ir.actions.act_window">
             <field name="name">Проект/Фаза</field>
             <field name="res_model">project.phases</field>
-            <field name="view_mode">tree,pivot,graph,calendar</field>
+            <field name="view_mode">tree,pivot,graph</field>
             <field name="view_id" ref="phase_view_tree"/>
         </record>
 

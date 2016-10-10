@@ -6,7 +6,7 @@
             <field name="name">project.phases.tree</field>
             <field name="model">catalog.phases</field>
             <field name="arch" type="xml">
-                <tree string="Список Фаз" editable="True">
+                <tree colors="green: name; red: description;" string="Список Фаз" editable="True">
                     <field name="name"/>
                     <field name="description"/>
                     <!--<field name="sequence"/>-->

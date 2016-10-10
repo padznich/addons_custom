@@ -21,7 +21,7 @@ class ProjectPhases(models.Model):
     _rec_name = 'phase_id'
 
     phase_id = fields.Many2one('catalog.phases', string='Фаза', ondelete='restrict', relation='data_section_rel')
-    project_phase_line_id = fields.Many2one('project.project', string='Project', ondelete='cascade')
+    project_phase_line_id = fields.Many2one('project.project', string='Проект', ondelete='cascade')
 
     date_contract = fields.Date(string='Дата по контракту',
                               help="Planing date for the Project Phase")
@@ -32,6 +32,9 @@ class ProjectPhases(models.Model):
     currency_id = fields.Many2one('res.currency', string='Currency')
     revenue = fields.Monetary(string='Доходы', currency_field='currency_id',
                               help="Cost of the Project Phase")
+
+    gip = fields.Char(string='ГИП', related='project_phase_line_id.user_id.name', store=True)
+
 
 
 class ProjectProject(models.Model):
@@ -59,4 +62,4 @@ class TaskPhase(models.Model):
     _inherit = 'project.task'
 
     phase_id = fields.Many2one('project.phases', string='Phase',
-                               help="Choose phase for the Task")
+                               help="Choose a phase for the Task")

@@ -4,11 +4,11 @@
 
     'summary': """Add phases to the Project and to the Tasks""",
 
-    'description': """Setting up a phases for Projects and Tasks""",
+    'description': """Setting up phases for Projects and Tasks""",
 
     'author': "padznich",
     'website': "softin.cloud",
-    'category': 'Uncategorized',
+    'category': 'Project extend',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
