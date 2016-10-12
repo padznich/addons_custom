@@ -32,7 +32,11 @@ class ProjectPhases(models.Model):
 
     gip = fields.Char(string='ГИП', related='project_phase_line_id.user_id.name', store=True)
 
-    # task_deadline = fields.Date(string='ДЭД', related="project_phase_line_id.task_ids.date_deadline", store=True)
+    date_accomplish = fields.Char(string='Фактичекая дата', compute='_last_date')
+    tasks_count = fields.Char(string='Число заданий в Фазе', store=True, readonly=True, compute='_last_date')
+    tasks_completed = fields.Char(string='Число завершённых заданий в Фазе', store=True, readonly=True,
+                                  compute='_last_date')
+    accomplish = fields.Float(string="Выполнение", store=True, readonly=True, compute="_last_date")
 
     @api.depends('project_phase_line_id')
     def _last_date(self):
@@ -66,10 +70,7 @@ class ProjectPhases(models.Model):
                 'accomplish': accomplish,
             })
 
-    date_accomplish = fields.Char(string='Фактичекая дата', compute='_last_date')
-    tasks_count = fields.Char(string='Число заданий в Фазе', store=True, readonly=True, compute='_last_date')
-    tasks_completed = fields.Char(string='Число завершённых заданий в Фазе', store=True, readonly=True, compute='_last_date')
-    accomplish = fields.Float(string="Выполнение", store=True, readonly=True, compute="_last_date")
+
 
 
 class ProjectProject(models.Model):

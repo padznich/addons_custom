@@ -83,6 +83,9 @@
                     <field name="revenue"/>
                     <field name="date_contract"/>
                     <field name="date_accomplish"/>
+                    <field name="tasks_count"/>
+                    <field name="tasks_completed"/>
+                    <field name="accomplish"/>
                 </pivot>
             </field>
         </record>
