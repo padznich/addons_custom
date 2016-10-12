@@ -1,33 +1,39 @@
-<odoo noupdate="1">
+<openerp>
+    <data>
 
-    <record id="project_PH1" model="catalog.phases" forcecreate="false">
-        <field name="sequence">10</field>
-        <field name="name">Phase 1</field>
-        <field name="description">Best Description</field>
-    </record>
+        <record id="project_phase1" model="catalog.phases">
+            <field name="sequence">10</field>
+            <field name="name">Обследование</field>
+        </record>
 
-    <record id="project_PH2" mod2l="catalog.phases" forcecreate="false">
-        <field name="sequence">10</field>
-        <field name="name">Phase 2</field>
-        <field name="description">Best Description Ever</field>
-    </record>
+        <record id="project_phase2" model="catalog.phases">
+            <field name="sequence">10</field>
+            <field name="name">Г/г Изыскания</field>
+        </record>
 
-    <record id="project_PH3" model="catalog.phases" forcecreate="false">
-        <field name="sequence">10</field>
-        <field name="name">Phase 3</field>
-        <field name="description">Best Description Ever Again</field>
-    </record>
+    <!--<record id="project_PH2" mod2l="catalog.phases" forcecreate="false">-->
+        <!--<field name="sequence">10</field>-->
+        <!--<field name="name">Phase 2</field>-->
+        <!--<field name="description">Best Description Ever</field>-->
+    <!--</record>-->
 
-    <record id="project_PH4" model="catalog.phases" forcecreate="false">
-        <field name="sequence">10</field>
-        <field name="name">Phase 4</field>
-        <field name="description">Best Description One More Time</field>
-    </record>
+    <!--<record id="project_PH3" model="catalog.phases" forcecreate="false">-->
+        <!--<field name="sequence">10</field>-->
+        <!--<field name="name">Phase 3</field>-->
+        <!--<field name="description">Best Description Ever Again</field>-->
+    <!--</record>-->
 
-    <record id="project_PH5" model="catalog.phases" forcecreate="false">
-        <field name="sequence">10</field>
-        <field name="name">Phase 5</field>
-        <field name="description">Best Description Last Time</field>
-    </record>
+    <!--<record id="project_PH4" model="catalog.phases" forcecreate="false">-->
+        <!--<field name="sequence">10</field>-->
+        <!--<field name="name">Phase 4</field>-->
+        <!--<field name="description">Best Description One More Time</field>-->
+    <!--</record>-->
 
-</odoo>
+    <!--<record id="project_PH5" model="catalog.phases" forcecreate="false">-->
+        <!--<field name="sequence">10</field>-->
+        <!--<field name="name">Phase 5</field>-->
+        <!--<field name="description">Best Description Last Time</field>-->
+    <!--</record>-->
+
+    </data>
+</openerp>

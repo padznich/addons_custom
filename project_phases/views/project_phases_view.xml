@@ -15,7 +15,6 @@
                                 <field name="phase_id"/>
                                 <field name="revenue"/>
                                 <field name="date_contract"/>
-                                <field name="date_accomplish"/>
                             </tree>
                         </field>
                         <group class="oe_subtotal_footer oe_right">
@@ -32,18 +31,20 @@
             <field name="model">project.phases</field>
             <field name="arch" type="xml">
                 <form string="Форма для заполнения Фазы">
+                    <header>
+                    </header>
                     <sheet>
                         <group>
                             <group>
-                                <field name="phase_id"/>
+                                <field name="phase_id" placeholder="Название Фазы"/>
                                 <field name="project_phase_line_id"/>
                             </group>
                             <group>
-                                <field name="revenue"/>
+                                <field name="revenue" placeholder="Доход"/>
                             </group>
                             <group>
-                                <field name="date_contract"/>
-                                <field name="date_accomplish"/>
+                                <field name="date_contract" placeholder="Дата по контракту"/>
+                                <field name="date_accomplish" placeholder="Фактическая дата"/>
                             </group>
                         </group>
                     </sheet>
@@ -56,12 +57,17 @@
             <field name="model">project.phases</field>
             <field name="arch" type="xml">
                 <tree string="Список Фаз" editable="True">
-                    <field name="project_phase_line_id"/>
-                    <field name="gip"/>
-                    <field name="phase_id"/>
-                    <field name="revenue"/>
-                    <field name="date_contract"/>
-                    <field name="date_accomplish"/>
+                    <field name="project_phase_line_id" placeholder="Выбор Проекта"
+                           options="{'no_create': True}"/>
+                    <field name="gip" placeholder="ГИП"/>
+                    <field name="phase_id" placeholder="Выбор Фазы"
+                           options="{'no_create': True}"/>
+                    <field name="revenue" placeholder="Доход по фазе"/>
+                    <field name="date_contract" placeholder="Дата по контракту"/>
+                    <field name="date_accomplish" placeholder="Фактическая дата"/>
+                    <field name="tasks_count"/>
+                    <field name="tasks_completed"/>
+                    <field name="accomplish" widget="progressbar"/>
                 </tree>
             </field>
         </record>
@@ -88,12 +94,27 @@
                 <graph string="Графики Проектов по фазам"
                        type="pivot">
                     <field name="project_phase_line_id" type="row"/>
-                    <field name="gip"/>
+                    <field name="gip" type="row"/>
                     <field name="phase_id" type="row"/>
                     <field name="revenue" type="measure"/>
-                    <field name="date_contract" type="measure"/>
-                    <field name="date_accomplish" type="measure"/>
+                    <field name="date_contract" type="row" interwal="day"/>
+                    <field name="date_accomplish" type="row" interwal="day"/>
                 </graph>
+            </field>
+        </record>
+
+        <record id="phase_view_search" model="ir.ui.view">
+            <field name="name">project.phase.search</field>
+            <field name="model">project.phases</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="project_phase_line_id"/>
+                    <field name="gip"/>
+                    <field name="phase_id"/>
+                    <field name="revenue"/>
+                    <field name="date_contract" type="row"/>
+                    <field name="date_accomplish"/>
+                </search>
             </field>
         </record>
 

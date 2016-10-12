@@ -19,6 +19,6 @@
         'views/catalog_phases_view.xml',
         'views/project_phases_view.xml',
         'views/task_phase_view.xml',
-        # 'views/phases_catalog_data.xml',
+        'views/phases_catalog_data.xml',
     ],
 }

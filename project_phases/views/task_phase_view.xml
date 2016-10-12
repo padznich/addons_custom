@@ -9,6 +9,7 @@
             <field name="arch" type="xml">
                 <field name="project_id" position="after">
                     <field name="phase_id"
+                           options="{'no_create': True}"
                            domain="[('project_phase_line_id','like', project_id)]"/>
                 </field>
             </field>
