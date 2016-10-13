@@ -30,47 +30,52 @@ class ProjectPhases(models.Model):
     revenue = fields.Monetary(string='Доходы', currency_field='currency_id',
                               help="Cost of the Project Phase")
 
-    gip = fields.Char(string='ГИП', related='project_phase_line_id.user_id.name', store=True)
+    gip = fields.Char(string='ГИП', related='project_phase_line_id.user_id.name', readonly=True, store=True)
 
-    date_accomplish = fields.Char(string='Фактичекая дата', compute='_last_date')
-    tasks_count = fields.Char(string='Число заданий в Фазе', store=True, readonly=True, compute='_last_date')
-    tasks_completed = fields.Char(string='Число завершённых заданий в Фазе', store=True, readonly=True,
-                                  compute='_last_date')
-    accomplish = fields.Float(string="Выполнение", store=True, readonly=True, compute="_last_date")
+    date_accomplish = fields.Date(string='Фактичекая дата', compute='_last_date')
+    tasks_count = fields.Integer(string='Число заданий в Фазе', readonly=True, compute='_last_date')
+    tasks_completed = fields.Integer(string='Число завершённых заданий в Фазе', readonly=True,
+                                     compute='_last_date')
+    accomplish = fields.Float(string='Выполнение', readonly=True, compute="_last_date")
 
-    @api.depends('project_phase_line_id')
+    @api.multi
     def _last_date(self):
 
         for pp in self:
-            last = None
-            tasks_count = 0
-            tasks_completed = 0
             for project in pp.project_phase_line_id:
+                last = None
                 tasks_count = 0
                 tasks_completed = 0
                 for task in project.task_ids:
                     if pp.phase_id.name == task.phase_id.phase_id.name:
                         tasks_count += 1
+
                         if not last:
                             last = task.date_deadline
                         if last < task.date_deadline:
                             last = task.date_deadline
+
                         if task.stage_id.name == "Basic":
                             tasks_completed += 1
 
-            try:
-                accomplish = float(tasks_completed) / float(tasks_count) * 100.0
-            except:
-                accomplish = 0.0
+                try:
+                    accomplish = float(tasks_completed) / float(tasks_count) * 100.0
+                except TypeError:
+                    accomplish = 0.0    # BAD CODE
+                except ZeroDivisionError:
+                    accomplish = 0.0
 
-            pp.update({
-                'date_accomplish': last,
-                'tasks_count': tasks_count,
-                'tasks_completed': tasks_completed,
-                'accomplish': accomplish,
-            })
+                pp.date_accomplish = last
+                pp.tasks_count = tasks_count
+                pp.tasks_completed = tasks_completed
+                pp.accomplish = accomplish
 
-
+                # pp.update({
+                #     'date_accomplish': last,
+                #     'tasks_count': tasks_count,
+                #     'tasks_completed': tasks_completed,
+                #     'accomplish': accomplish,
+                # })
 
 
 class ProjectProject(models.Model):

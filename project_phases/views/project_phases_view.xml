@@ -31,8 +31,6 @@
             <field name="model">project.phases</field>
             <field name="arch" type="xml">
                 <form string="Форма для заполнения Фазы">
-                    <header>
-                    </header>
                     <sheet>
                         <group>
                             <group>
@@ -46,6 +44,12 @@
                                 <field name="date_contract" placeholder="Дата по контракту"/>
                                 <field name="date_accomplish" placeholder="Фактическая дата"/>
                             </group>
+                            <group>
+                                <field name="gip"/>
+                                <field name="tasks_count"/>
+                                <field name="tasks_completed"/>
+                                <field name="accomplish"/>
+                            </group>
                         </group>
                     </sheet>
                 </form>
@@ -56,13 +60,13 @@
             <field name="name">project.phase.tree</field>
             <field name="model">project.phases</field>
             <field name="arch" type="xml">
-                <tree string="Список Фаз" editable="True">
+                <tree string="Список Фаз">
                     <field name="project_phase_line_id" placeholder="Выбор Проекта"
                            options="{'no_create': True}"/>
                     <field name="gip" placeholder="ГИП"/>
                     <field name="phase_id" placeholder="Выбор Фазы"
                            options="{'no_create': True}"/>
-                    <field name="revenue" placeholder="Доход по фазе"/>
+                    <field name="revenue" placeholder="Доход по фазе" sum="Total"/>
                     <field name="date_contract" placeholder="Дата по контракту"/>
                     <field name="date_accomplish" placeholder="Фактическая дата"/>
                     <field name="tasks_count"/>
@@ -82,10 +86,6 @@
                     <field name="phase_id"/>
                     <field name="revenue"/>
                     <field name="date_contract"/>
-                    <field name="date_accomplish"/>
-                    <field name="tasks_count"/>
-                    <field name="tasks_completed"/>
-                    <field name="accomplish"/>
                 </pivot>
             </field>
         </record>
@@ -94,14 +94,16 @@
             <field name="name">project.phase.graph</field>
             <field name="model">project.phases</field>
             <field name="arch" type="xml">
-                <graph string="Графики Проектов по фазам"
-                       type="pivot">
+                <graph string="Графики Проектов по фазам" type="pivot">
                     <field name="project_phase_line_id" type="row"/>
                     <field name="gip" type="row"/>
                     <field name="phase_id" type="row"/>
                     <field name="revenue" type="measure"/>
                     <field name="date_contract" type="row" interwal="day"/>
                     <field name="date_accomplish" type="row" interwal="day"/>
+                    <field name="tasks_count" type="measure"/>
+                    <field name="tasks_completed" type="measure"/>
+                    <field name="accomplish" type="row"/>
                 </graph>
             </field>
         </record>
