@@ -72,6 +72,7 @@
                     <field name="tasks_count"/>
                     <field name="tasks_completed"/>
                     <field name="accomplish" widget="progressbar"/>
+                    <field name="diff_days" />
                 </tree>
             </field>
         </record>
@@ -80,12 +81,15 @@
             <field name="name">project.phase.pivot</field>
             <field name="model">project.phases</field>
             <field name="arch" type="xml">
-                <pivot display_quantity="true" string="Таблица Проектов по Фазам">
-                    <field name="project_phase_line_id"/>
-                    <field name="gip"/>
-                    <field name="phase_id"/>
-                    <field name="revenue"/>
-                    <field name="date_contract"/>
+                <pivot string="Таблица Проектов по Фазам">
+                    <field name="project_phase_line_id" type="main_row"/>
+                    <field name="gip" type="col"/>
+                    <field name="phase_id" type="col"/>
+                    <field name="diff_days" type="measure"/>
+                    <field name="revenue" type="measure"/>
+
+                    <!--<field name="date_contract" type="measure" />-->
+                    <!--<field name="date_accomplish" store="1" type="measure" interwal="day"/>-->
                 </pivot>
             </field>
         </record>
@@ -99,10 +103,10 @@
                     <field name="gip" type="row"/>
                     <field name="phase_id" type="row"/>
                     <field name="revenue" type="measure"/>
-                    <field name="date_contract" type="row" interwal="day"/>
-                    <field name="date_accomplish" type="row" interwal="day"/>
+                    <field name="date_contract" type="measure" interwal="day"/>
+                    <field name="date_accomplish" type="measure" interwal="day"/>
                     <field name="tasks_count" type="measure"/>
-                    <field name="tasks_completed" type="measure"/>
+                    <field name="tasks_completed" type="row"/>
                     <field name="accomplish" type="row"/>
                 </graph>
             </field>

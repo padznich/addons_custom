@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from datetime import datetime
+
 from openerp import models, fields, api
 
 
@@ -30,13 +32,32 @@ class ProjectPhases(models.Model):
     revenue = fields.Monetary(string='Доходы', currency_field='currency_id',
                               help="Cost of the Project Phase")
 
-    gip = fields.Char(string='ГИП', related='project_phase_line_id.user_id.name', readonly=True, store=True)
+    gip = fields.Char(string='ГИП', related='project_phase_line_id.user_id.name', store=True, readonly=True)
 
     date_accomplish = fields.Date(string='Фактичекая дата', compute='_last_date')
     tasks_count = fields.Integer(string='Число заданий в Фазе', readonly=True, compute='_last_date')
     tasks_completed = fields.Integer(string='Число завершённых заданий в Фазе', readonly=True,
                                      compute='_last_date')
     accomplish = fields.Float(string='Выполнение', readonly=True, compute="_last_date")
+
+    diff_days = fields.Integer(string='Разница', compute="_last_date", readonly=True, store=True)
+
+    @api.multi
+    def sq(self):
+        sql = ('SELECT country_id, array_agg(id) '
+               'FROM res_partner '
+               'WHERE active=true AND country_id IS NOT NULL '
+               'GROUP BY country_id')
+        self.env.cr.execute(sql)
+        country_model = self.env['res.country']
+        result = {}
+        for country_id, partner_ids in self.env.cr.fetchall():
+            country = country_model.browse(country_id)
+        partners = self.search(
+            [('id', 'in', tuple(partner_ids))]
+        )
+        result[country] = partners
+        return result
 
     @api.multi
     def _last_date(self):
@@ -65,16 +86,43 @@ class ProjectPhases(models.Model):
                 except ZeroDivisionError:
                     accomplish = 0.0
 
-                pp.date_accomplish = last
+                diff_days = (datetime.strptime(last, "%Y-%m-%d") - datetime.strptime(pp.date_contract, "%Y-%m-%d")).days
+
+                pp.date_accomplish = datetime.strptime(last, "%Y-%m-%d").date()
+                pp.diff_days = diff_days
                 pp.tasks_count = tasks_count
                 pp.tasks_completed = tasks_completed
                 pp.accomplish = accomplish
+
+                sql = ('UPDATE project_phases '
+                       'SET diff_days = {diff_days} '
+                       'WHERE id = {id}'.format(
+                            diff_days=diff_days,
+                            id=pp.id
+                )
+                )
+                self.env.cr.execute(sql)
+
+                # sql = ('UPDATE project_phases SET date_accomplish = {date_accomplish} WHERE id = {id}'.format(
+                #     date_accomplish=datetime.strptime(last, "%Y-%m-%d"),
+                    # date_accomplish=datetime.strptime(last, "%Y-%m-%d").date(),
+                    # id=pp.id)
+                # )
+                # sql = (
+                #     'INSERT INTO project_phases(date_accomplish) '
+                #     'VALUES ({date_accomplish}) '
+                #     'WHERE id = {id}'.format(
+                #         date_accomplish=datetime.strptime(last, "%Y-%m-%d").date(),
+                #         id=pp.id)
+                # )
+                # self.env.cr.execute(sql)
 
                 # pp.update({
                 #     'date_accomplish': last,
                 #     'tasks_count': tasks_count,
                 #     'tasks_completed': tasks_completed,
                 #     'accomplish': accomplish,
+                #     'diff_days': diff_days,
                 # })
 
 
