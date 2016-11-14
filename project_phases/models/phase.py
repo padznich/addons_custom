@@ -3,6 +3,7 @@
 from datetime import datetime
 
 from openerp import models, fields, api
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT, DATETIME_FORMATS_MAP
 
 
 class CatalogPhases(models.Model):
@@ -86,22 +87,30 @@ class ProjectPhases(models.Model):
                 except ZeroDivisionError:
                     accomplish = 0.0
 
-                diff_days = (datetime.strptime(last, "%Y-%m-%d") - datetime.strptime(pp.date_contract, "%Y-%m-%d")).days
+                diff_days = (datetime.strptime(last, DEFAULT_SERVER_DATETIME_FORMAT) - datetime.strptime(pp.date_contract, DEFAULT_SERVER_DATETIME_FORMAT)).days
+                # diff_days = (datetime.strptime(last, "%Y-%m-%d") - datetime.strptime(pp.date_contract, "%Y-%m-%d")).days
 
-                pp.date_accomplish = datetime.strptime(last, "%Y-%m-%d").date()
-                pp.diff_days = diff_days
-                pp.tasks_count = tasks_count
-                pp.tasks_completed = tasks_completed
-                pp.accomplish = accomplish
+                # pp.date_accomplish = datetime.strptime(last, "%Y-%m-%d").date()
+                # pp.diff_days = diff_days
+                # pp.tasks_count = tasks_count
+                # pp.tasks_completed = tasks_completed
+                # pp.accomplish = accomplish
+                pp.write({
+                    "diff_days": diff_days,
+                    "task_count": tasks_count,
+                    "date_accomplish": datetime.strptime(last, DEFAULT_SERVER_DATETIME_FORMAT).strftime(DEFAULT_SERVER_DATE_FORMAT),
+                    "tasks_completed": tasks_completed,
+                    "accomplish": accomplish,
+                })
 
-                sql = ('UPDATE project_phases '
-                       'SET diff_days = {diff_days} '
-                       'WHERE id = {id}'.format(
-                            diff_days=diff_days,
-                            id=pp.id
-                )
-                )
-                self.env.cr.execute(sql)
+                # sql = ('UPDATE project_phases '
+                #        'SET diff_days = {diff_days} '
+                #        'WHERE id = {id}'.format(
+                #             diff_days=diff_days,
+                #             id=pp.id
+                # )
+                # )
+                # self.env.cr.execute(sql)
 
                 # sql = ('UPDATE project_phases SET date_accomplish = {date_accomplish} WHERE id = {id}'.format(
                 #     date_accomplish=datetime.strptime(last, "%Y-%m-%d"),
