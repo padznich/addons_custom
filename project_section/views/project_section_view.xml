@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Sections -->
+        <record id="section_view_tree" model="ir.ui.view">
+            <field name="name">Project Section Tree</field>
+            <field name="model">project.section</field>
+            <field name="arch" type="xml">
+                <tree string="Section">
+                    <field name="project_task_ids"/>
+                    <field name="project_section_id"/>
+                    <field name="project_id"/>
+                    <field name="labor" sum="Сумма"/>
+                    <field name="wage_rate"/>
+                    <field name="planned_cost" sum="Сумма"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id="section_view_form" model="ir.ui.view">
+            <field name="name">Project Section Form</field>
+            <field name="model">project.section</field>
+            <field name="arch" type="xml">
+                <form string="Section">
+                    <group>
+                        <group>
+                            <field name="project_id" />
+                            <field name="project_section_id" />
+                        </group>
+                        <group>
+                            <field name="labor" sum="Сумма" />
+                            <field name="wage_rate" />
+                            <field name="planned_cost" sum="Сумма" />
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="graph_project_section_pivot" model="ir.ui.view">
+            <field name="name">Section on pivot</field>
+            <field name="model">project.section</field>
+            <field name="arch" type="xml">
+                <graph type="pivot">
+                    <field name="project_section_id" type="row"/>
+                    <field name="project_id" type="row"/>
+                    <field name="labor" type="measure"/>
+                    <field name="wage_rate" type="measure"/>
+                    <field name="planned_cost" type="measure"/>
+                 </graph>
+            </field>
+        </record>
+
+        <!--<record id="graph_project_task_pivot" model="ir.ui.view">-->
+            <!--<field name="model">project.section</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<graph type="bar">-->
+                    <!--<field name="parent_id" type="row" />-->
+                    <!--<field name="user_id" type="row" />-->
+                    <!--<field name="planned_hours" type="measure" />-->
+                    <!--<field name="effective_hours" type="measure" />-->
+                <!--</graph>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <record id="view_section_project_search" model="ir.ui.view">
+            <field name="name">Project Section Search</field>
+            <field name="model">project.section</field>
+            <field name="arch" type="xml">
+                <search string="Section Analysis">
+                    <!--<field name="date_start"/>-->
+                    <!--<field name="date_end"/>-->
+                    <!--<field name="date_deadline"/>-->
+                    <!--<field name="date_last_stage_update"/>-->
+                    <field name="project_section_id"/>
+                    <field name="project_id"/>
+                    <field name="project_task_ids"/>
+
+                    <!--<separator/>-->
+                    <!--<filter string="New" name="new" domain="[('stage_id.sequence', '&lt;=', 1)]"/>-->
+
+                    <group expand="1" string="Group By">
+                        <filter string="Project" name="project" context="{'group_by':'project_id'}"/>
+                        <filter string="Task" context="{'group_by':'project_task_ids'}"/>
+                        <!--<filter string="Assigned to" name="User" context="{'group_by':'user_id'}"/>-->
+                        <!--<filter string="Stage" name="Stage" context="{'group_by':'stage_id'}"/>-->
+                        <!--<filter string="Company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>-->
+                        <!--<separator/>-->
+                        <!--<filter string="Assignation Month" context="{'group_by':'date_start:month'}" help="Creation Date"/>-->
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="open_section_form" model="ir.actions.act_window">
+            <field name="name">Разделы</field>
+            <field name="res_model">project.section</field>
+            <field name="view_mode">tree,pivot</field>
+            <field name="view_id" ref="section_view_tree"/>
+            <!--<field name="context">{-->
+                <!--'group_by_no_leaf':1,-->
+                <!--'group_by':[],-->
+                <!--'search_default_project_id': [active_id],-->
+                <!--'default_project_id': active_id,-->
+            <!--}-->
+            <!--</field>-->
+        </record>
+
+        <menuitem action="open_section_form"
+                  id="menu_section_view"
+                  parent="project.menu_project_config" sequence="9"/>
+
+    </data>
+</openerp>

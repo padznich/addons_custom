@@ -1,0 +1,46 @@
+<openerp>
+  <data>
+
+    <record model="ir.ui.view" id="bnhp_project_expertise_form_inherit">
+      <field name="name">bnhp_project_expertise_inherit form</field>
+      <field name="model">project.project</field>
+      <field name="inherit_id" ref="project.edit_project"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook" position="inside">
+          <page string="Экспертиза">
+            <group>
+              <group>
+                <field name="exp_code"/>
+              </group>
+              <group>
+                <field name="exp_date_to_pay"/>
+                <field name="exp_date_to_pass"/>
+                <field name="exp_date_to_finish"/>
+              </group>
+            </group>
+            <h4>Разделы проекта, переданные на экспертизу</h4>
+            <group>
+              <field name="section_ids" nolabel="1" widget="many2many_list">
+                <tree string="Разделы проекта, переданные на экспертизу">
+                  <field name="short_name" position="attributes">
+                    <attribute name="string">Разделы</attribute>
+                  </field>
+                </tree>
+              </field>
+            </group>
+            <group>
+              <group>
+                <field name="exp_date_of_remark"/>
+                <field name="exp_date_of_send"/>
+              </group>
+              <group>
+                <field name="exp_date_of_unremark"/>
+              </group>
+            </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>

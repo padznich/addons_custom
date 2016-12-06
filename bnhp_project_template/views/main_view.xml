@@ -1,0 +1,80 @@
+<openerp>
+  <data>
+
+    <record model="ir.ui.view" id="bnhp_project_template_list_inherit">
+      <field name="name">bnhp_project_template_inherit list</field>
+      <field name="model">project.project</field>
+      <field name="inherit_id" ref="project.view_project"/>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="gip"/>
+          <field name="priority"/>
+          <field name="status"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="bnhp_project_template_form_inherit">
+      <field name="name">bnhp_project_template_inherit form</field>
+      <field name="model">project.project</field>
+      <field name="inherit_id" ref="project.edit_project"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook/page" position="inside">
+          <group>
+            <group>
+              <field name="gip" widget="selection"/>
+              <field name="contract_amount"/>
+              <field name="dead_line_date"/>
+            </group>
+            <group>
+              <field name="priority" widget="selection"/>
+              <field name="status" widget="selection"/>
+              <!--<field name="phase_ids" widget="selection"/>-->
+            </group>
+          </group>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="bnhp_project_template.action_window">
+      <field name="name">bnhp_project_template window</field>
+      <field name="res_model">bnhp_project_template.bnhp_project_template</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="bnhp_project_template.action_server">
+      <field name="name">bnhp_project_template server</field>
+      <field name="model_id" ref="model_bnhp_project_template_bnhp_project_template"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="bnhp_project_template" id="bnhp_project_template.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="bnhp_project_template.menu_1" parent="bnhp_project_template.menu_root"/>
+    <menuitem name="Menu 2" id="bnhp_project_template.menu_2" parent="bnhp_project_template.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="bnhp_project_template.menu_1_list" parent="bnhp_project_template.menu_1"
+              action="bnhp_project_template.action_window"/>
+    <menuitem name="Server to list" id="bnhp_project_template" parent="bnhp_project_template.menu_2"
+              action="bnhp_project_template.action_server"/>
+    -->
+  </data>
+</openerp>

@@ -1,0 +1,65 @@
+#swipebox-overlay {
+  background: url('/menu_popup/static/src/img/trans_black_75.png') !important;
+}
+
+.oe_menu_popup {
+	margin-right: 5px !important;
+    min-width: 100px;
+}
+
+.oe_menu_popup li {
+	display: inline-block;
+    position: absolute;
+    top: -1px;
+}
+
+.menu_popup {
+    width: 100%;
+    height: 41px;
+    margin: 0 0% 0 2%;
+    float: left;
+    display: inline-block;
+    background-color: #2196F3;
+    color: #FFF;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid #FFF176;
+   	padding: 3px 10px;
+    cursor: pointer;
+}
+
+.menu_popup:hover {
+	background-color: #1976D2;
+	padding-top: 4px;
+}
+
+.menu_popup:before {
+	left: -10px;
+	border-width: 0 10px 6px 0;
+	border-color: transparent #1565C0 transparent transparent;
+}
+
+.menu_popup:after {
+	right: -10px;
+	border-width: 6px 10px 0 0;
+	border-color: #1565C0 transparent transparent transparent;
+}
+
+.menu_popup:before,
+.menu_popup:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	
+	height: 5%;
+	width: 50%;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	
+	
+}
+
+.menu_popup > i {
+	display: block;
+}

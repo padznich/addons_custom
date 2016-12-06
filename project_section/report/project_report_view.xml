@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--<record id="view_task_project_user_tree" model="ir.ui.view">-->
+            <!--<field name="name">View task project user tree (add section)</field>-->
+            <!--<field name="model">report.project.task.user</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree string="Tasks Analysis (tree)">-->
+                     <!--<field name="project_id"/>-->
+                     <!--<field name="user_id"/>-->
+                     <!--<field name="nbr"/>-->
+                 <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+    </data>
+</openerp>

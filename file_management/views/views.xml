@@ -1,0 +1,170 @@
+<openerp>
+  <data>
+
+      <!-- Adds all assets in Odoo -->
+      <template id="assets_backend" name="static_resources_demo assets" inherit_id="web.assets_backend">
+          <xpath expr="." position="inside">
+              <link rel="stylesheet" href="/file_management/static/src/css/my.css"/>
+          </xpath>
+      </template>
+
+
+      <!-- explicit list view definition -->
+      <record model="ir.ui.view" id="new_folder_form">
+      <field name="name">new_folder form</field>
+      <field name="model">new_folder</field>
+      <field name="arch" type="xml">
+      <form> 
+          <h1><field name="name" required="True" placeholder="Title"/></h1>
+          <field name="file" widget="many2many_binary" string="Attach a file"/>
+          <field name="uploaded" widget="many2many_kanban"/>
+          <field name="res_model" invisible="1"/>
+      </form>
+      </field>
+    </record> 
+
+    <record model="ir.ui.view" id="new_folder_child_form">
+      <field name="name">new_folder_child form</field>
+      <field name="model">new_folder_child</field>
+      <field name="arch" type="xml">
+        <form> 
+          <field name="name" required="True" placeholder="Title"/>
+          <field name="file" widget="many2many_binary" string="Attach a file"/>
+
+
+          <field name="uploaded" widget="many2many_kanban"/>
+
+          <button type="object" icon="gtk-delete" name="unlink"/>
+       
+        </form>
+      </field>
+    </record> 
+
+   <record model="ir.ui.view" id="new_folder_kanban">
+            <field name="name">new_folder kanban</field>
+            <field name="model">new_folder</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}
+                                                  oe_kanban_action">
+                                <div class="oe_dropdown_kanban">
+                                    <!-- dropdown menu -->
+                                    <div class="oe_dropdown_toggle">
+                                        <i class="fa fa-bars fa-lg"/>
+                                        <ul class="oe_dropdown_menu">
+                                            <li>
+                                                <a type="delete">Delete</a>
+                                            </li>
+                                            <li>
+                                                <ul class="oe_kanban_colorpicker"
+                                                    data-field="color"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="oe_clear"></div>
+                                    <div class="oe_kanban_bottom_right">
+                                      <a type="edit"><img t-att-src="kanban_image('new_folder', 'image_small', record.id.value)" width="65" height="65" style="padding:0px;" class="" src="/file_management/static/img/folder.png"/></a>
+                                    </div>
+                                </div>
+                                <div t-attf-class="oe_kanban_content">
+                                    <!-- title -->
+                                    <h3><field name="name"/></h3>
+                              </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+    <record model="ir.ui.view" id="new_folder_child_kanban">
+            <field name="name">new_folder_child kanban</field>
+            <field name="model">new_folder_child</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div style="border:1px solid black;" t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}
+                                                  oe_kanban_action">
+                                <div class="oe_dropdown_kanban">
+                                    <!-- dropdown menu -->
+                                    <div class="oe_dropdown_toggle">
+                                        <i class="fa fa-bars fa-lg"/>
+                                        <ul class="oe_dropdown_menu">
+                                            <li>
+                                                <a type="delete">Delete</a>
+                                            </li>
+                                            <li>
+                                                <ul class="oe_kanban_colorpicker"
+                                                    data-field="color"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="oe_clear"></div>
+                                    <div class="oe_kanban_bottom_right">
+                                      <a type="edit"><img t-att-src="kanban_image('new_folder', 'image_small', record.id.value)" width="65" height="65" style="padding:0px;" class="" src="/file_management/static/img/folder.png"/></a>
+                                    </div>
+                                </div>
+                                <div t-attf-class="oe_kanban_content">
+                                    <!-- title -->
+                                    <h3><field name="name"/></h3>
+                              </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    <record model="ir.actions.act_window" id="new_folder_action_window">
+      <field name="name">Folder Management Window</field>
+      <field name="res_model">new_folder</field>
+      <field name="view_mode">kanban,form</field>
+        <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Manage your documents here.
+                </p>
+            </field>
+
+    </record>
+
+    <record model="ir.actions.act_window" id="new_folder_child_action_window">
+      <field name="name">Folder Management Window</field>
+      <field name="res_model">new_folder_child</field>
+      <field name="view_mode">form,kanban</field>
+        <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Manage your documents here.
+                </p>
+            </field>
+
+    </record>
+    
+    <!-- server action to the one above -->
+    
+    
+    <!-- Top menu item -->
+    
+    <menuitem name="Document Management System" id="folder_management_menu_root"/>
+    
+    <!-- menu categories -->
+    
+    <menuitem name="My Files" id="folder_management_menu_1" parent="folder_management_menu_root"/>
+    
+    <!-- actions -->
+    
+    <menuitem name="Drive" id="folder_management" parent="folder_management_menu_1"
+              action="new_folder_action_window"/>
+    
+  </data>
+</openerp>
+
+
+

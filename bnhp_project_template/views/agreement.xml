@@ -1,0 +1,25 @@
+<openerp>
+  <data>
+
+    <record model="ir.ui.view" id="bnhp_project_agreement_form_inherit">
+      <field name="name">bnhp_project_agreement_inherit form</field>
+      <field name="model">project.project</field>
+      <field name="inherit_id" ref="project.edit_project"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook" position="inside">
+          <page string="Согласование">
+            <group>
+              <group id="agreement_group_0">
+                <!--<field name="agr_code"/>-->
+                <field name="agr_name"/>
+                <field name="agr_date_to_send"/>
+                <field name="agr_date_to_receive"/>
+              </group>
+          </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>

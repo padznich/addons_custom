@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="1">
+
+    <!-- Project Section List -->
+
+    <record id="project_tt_AR" model="project.section.list">
+        <field name="sequence">10</field>
+        <field name="short_name">АР</field>
+        <field name="long_name">Архитектурные решения</field>
+    </record>
+    <record id="project_tt_KR" model="project.section.list">
+        <field name="sequence">20</field>
+        <field name="short_name">КР</field>
+        <field name="long_name">Конструктивные решения</field>
+    </record>
+    <record id="project_tt_TP" model="project.section.list">
+        <field name="sequence">30</field>
+        <field name="short_name">ТП</field>
+        <field name="long_name">Технология производства</field>
+    </record>
+    <record id="project_tt_ES" model="project.section.list">
+        <field name="sequence">40</field>
+        <field name="short_name">ЭС</field>
+        <field name="long_name">Электроснабжение</field>
+    </record>
+    <record id="project_tt_TS" model="project.section.list">
+        <field name="sequence">50</field>
+        <field name="short_name">ТС</field>
+        <field name="long_name">Теплоснабжение</field>
+    </record>
+
+    <!-- Projects -->
+
+    <record id="project_n1" model="project.project">
+        <field name="name">Проект №1</field>
+    </record>
+    <record id="project_n2" model="project.project">
+        <field name="name">Проект №2</field>
+    </record>
+
+    <!-- Project Sections -->
+
+    <record id="sect_AR" model="project.section">
+        <field name="project_section_id" ref="project_tt_AR"/>
+        <field name="project_id" ref="project_n1"/>
+    </record>
+    <record id="sec_KR" model="project.section">
+        <field name="project_section_id" ref="project_tt_KR"/>
+        <field name="project_id" ref="project_n2"/>
+    </record>
+
+</data>
+</openerp>

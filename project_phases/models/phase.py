@@ -12,7 +12,7 @@ class CatalogPhases(models.Model):
     _description = 'Catalog of Project Phases'
     _rec_name = 'name'
 
-    name = fields.Char(required=True, string='Фаза')
+    name = fields.Char(required=True, string='Стадия')
     description = fields.Char(string='Описание')
     sequence = fields.Integer('Sequence')
 
@@ -23,7 +23,7 @@ class ProjectPhases(models.Model):
     _description = 'Project Phases'
     _rec_name = 'phase_id'
 
-    phase_id = fields.Many2one('catalog.phases', string='Фаза', ondelete='restrict', relation='data_section_rel')
+    phase_id = fields.Many2one('catalog.phases', string='Стадия', ondelete='restrict', relation='data_section_rel')
     project_phase_line_id = fields.Many2one('project.project', string='Проект', ondelete='cascade')
 
     date_contract = fields.Date(string='Дата по контракту',
@@ -36,8 +36,8 @@ class ProjectPhases(models.Model):
     gip = fields.Char(string='ГИП', related='project_phase_line_id.user_id.name', store=True, readonly=True)
 
     date_accomplish = fields.Date(string='Фактичекая дата', compute='_last_date')
-    tasks_count = fields.Integer(string='Число заданий в Фазе', readonly=True, compute='_last_date')
-    tasks_completed = fields.Integer(string='Число завершённых заданий в Фазе', readonly=True,
+    tasks_count = fields.Integer(string='Число заданий в Стадии', readonly=True, compute='_last_date')
+    tasks_completed = fields.Integer(string='Число завершённых заданий в СТадии', readonly=True,
                                      compute='_last_date')
     accomplish = fields.Float(string='Выполнение', readonly=True, compute="_last_date")
 
@@ -138,7 +138,7 @@ class ProjectPhases(models.Model):
 class ProjectProject(models.Model):
     _inherit = 'project.project'
 
-    phase_line = fields.One2many('project.phases', 'project_phase_line_id', string='Строка Фазы', copy=True)
+    phase_line = fields.One2many('project.phases', 'project_phase_line_id', string='Строка Стадии', copy=True)
 
     @api.depends('phase_line')
     def _amount_all(self):

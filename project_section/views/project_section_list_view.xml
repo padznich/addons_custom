@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--List of project sections-->
+        <record id="section_list_view_tree" model="ir.ui.view">
+            <field name="name">Project Section List Tree</field>
+            <field name="model">project.section.list</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="short_name" />
+                    <field name="long_name" />
+                    <field name="sequence" widget="handle" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="section_list_view_form" model="ir.ui.view">
+            <field name="name">Project Section List Form</field>
+            <field name="model">project.section.list</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="short_name" />
+                        <field name="long_name" />
+                        <field name="sequence" invisible="True" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_section_list_tree" model="ir.actions.act_window">
+            <field name="name">Справочник разделов</field>
+            <field name="res_model">project.section.list</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="section_list_view_tree" />
+        </record>
+
+        <menuitem action="open_section_list_tree"
+                  id="menu_section_list_view"
+                  parent="project.menu_project_config" sequence="8" />
+
+    </data>
+</openerp>

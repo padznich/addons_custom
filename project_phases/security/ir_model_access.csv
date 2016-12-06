@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_phases_manager,project.phases.manager,project_phases.model_project_phases,project.group_project_manager,True,True,True,True
+access_project_phases_user,project.phases.user,project_phases.model_project_phases,project.group_project_user,True,False,False,False

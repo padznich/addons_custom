@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="1">
+
+    <!-- Priorities -->
+
+    <record id="project_tt_1" model="bnhp_project_template.priority">
+        <field name="sequence">10</field>
+        <field name="number">1</field>
+        <field name="name">Программа Совмина</field>
+        <field name="case_default" eval="True"/>
+    </record>
+    <record id="project_tt_2" model="bnhp_project_template.priority">
+        <field name="sequence">20</field>
+        <field name="number">2</field>
+        <field name="name">Тендер</field>
+        <field name="case_default" eval="True"/>
+    </record>
+    <record id="project_tt_3" model="bnhp_project_template.priority">
+        <field name="sequence">30</field>
+        <field name="number">3</field>
+        <field name="name">Премия ЦА</field>
+        <field name="case_default" eval="True"/>
+    </record>
+    <record id="project_tt_4" model="bnhp_project_template.priority">
+        <field name="sequence">40</field>
+        <field name="number">4</field>
+        <field name="name">ПО Беларуснефть</field>
+        <field name="case_default" eval="True"/>
+    </record>
+    <record id="project_tt_5" model="bnhp_project_template.priority">
+        <field name="sequence">50</field>
+        <field name="number">5</field>
+        <field name="name">Дочерние</field>
+        <field name="case_default" eval="True"/>
+    </record>
+    <record id="project_tt_6" model="bnhp_project_template.priority">
+        <field name="sequence">60</field>
+        <field name="number">6</field>
+        <field name="name">Прочие</field>
+        <field name="case_default" eval="True"/>
+    </record>
+    <record id="project_tt_7" model="bnhp_project_template.priority">
+        <field name="sequence">70</field>
+        <field name="number">7</field>
+        <field name="name">Объект в экспертизе</field>
+        <field name="case_default" eval="True"/>
+    </record>
+    <record id="project_tt_8" model="bnhp_project_template.priority">
+        <field name="sequence">80</field>
+        <field name="number">8</field>
+        <field name="name">Объкт в стадии строительства</field>
+        <field name="case_default" eval="True"/>
+    </record>
+
+</data>
+</openerp>

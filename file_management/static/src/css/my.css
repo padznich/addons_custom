@@ -1,0 +1,10 @@
+.oe_resource_vignette .o_kanban_record {
+  width: 24px;
+  height: 34px;
+}
+
+.oe_kanban_avatar .oe_resource_vignette .o_kanban_record{
+	border: 10px solid black;
+
+}
+

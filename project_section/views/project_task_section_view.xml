@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--View Tasks with Section (as "Реестр задач")-->
+
+        <record id="view_task_section_tree2_inherited" model="ir.ui.view">
+            <field name="name">Project Task Section Tree Inherited</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project_timesheet.view_task_tree2_inherited" />
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="section_id"/>
+                </field>
+                <field name="planned_hours" position="after">
+                    <field name="remaining_hours" invisible='1'/>
+                    <field name="effective_hours" widget="float_time" sum="Spent Hours"/>
+                </field>
+                <field name="progress" position="after">
+                    <field name="w_rate"/>
+                    <field name="lab" widget="float_time" sum="Всего часов:"/>
+                    <field name="pl_cost" sum="Итого:"/>
+                    <field name="fact_cost" sum="Итого:"/>
+                </field>
+            </field>
+        </record>
+
+         <record id="open_task_section_form" model="ir.actions.act_window">
+            <field name="name">Реестр задач</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_task_section_tree2_inherited"/>
+        </record>
+
+        <menuitem action="open_task_section_form"
+                  id="menu_task_section_view"
+                  parent="project.menu_project_config" sequence="10"/>
+
+    </data>
+</openerp>

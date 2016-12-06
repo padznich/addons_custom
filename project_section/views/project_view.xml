@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Sections -->
+        <record id="edit_project_section" model="ir.ui.view">
+            <field name="name">project.project.form.inherit</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Разделы проекта">
+                        <field name="section_line">
+                            <tree string="Section Lines">
+                                  <!--editable="bottom">-->
+                                <field name="project_section_id" options="{'no_create': True}"/>
+                                <!--<field name="test"/>-->
+                                <field name="labor"/>
+                                <field name="wage_rate"/>
+                                <field name="planned_cost"/>
+                            </tree>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_total_labor"/>
+                            <field name="amount_total_cost" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!--Add sections by project task-->
+        <record id="view_task_search_form" model="ir.ui.view">
+            <field name="name">project.task.filter</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_search_form"/>
+            <field name="arch" type="xml">
+                <field name="project_id" position="after">
+                    <field name="section_id"/>
+                </field>
+                <!--<filter position="after">-->
+                    <!--<filter string="Section" name="section_for_this_project"-->
+                            <!--icon="terp-folder-violet" domain="[]"-->
+                            <!--context="{'group_by':'section_id'}"/>-->
+                <!--</filter>-->
+            </field>
+        </record>
+
+        <record id="view_task_form" model="ir.ui.view">
+            <field name="name">project.task.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <field name="project_id" position="after">
+                    <field name="section_id"
+                           domain="[('project_id','like', project_id)]"
+                           options="{'no_create': True}"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_task_section_tree" model="ir.ui.view">
+            <field name="name">project.task.tree</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_tree2"/>
+            <field name="arch" type="xml">
+                <field name="date_deadline" position="after">
+                    <field name="section_id" invisible="True"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

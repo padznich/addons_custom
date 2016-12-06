@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_folder_management_folder_management,folder_management.folder_management,model_folder_management_folder_management,,1,0,0,0
